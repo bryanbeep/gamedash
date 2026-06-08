@@ -1,7 +1,20 @@
 const app = require("./app");
+const sequelize = require("./config/database");
 
 const PORT = process.env.PORT || 3000;
 
-app.listen(PORT, () => {
-  console.log(`Servidor corriendo en el puerto ${PORT}`);
-});
+async function main() {
+  try {
+    await sequelize.authenticate();
+    console.log("Conexión a la base de datos exitosa");
+    await sequelize.sync();
+    console.log("Tablas sincronizadas");
+    app.listen(PORT, () => {
+      console.log(`Servidor corriendo en el puerto ${PORT}`);
+    });
+  } catch (error) {
+    console.error("Error al conectar la base de datos:", error.message);
+  }
+}
+
+main();
