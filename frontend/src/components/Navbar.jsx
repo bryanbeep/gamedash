@@ -1,4 +1,5 @@
 import { Link, NavLink } from "react-router-dom";
+import { JoystickIcon } from "./Icons";
 import "./Navbar.css";
 
 function Navbar() {
@@ -6,7 +7,7 @@ function Navbar() {
     <nav className="navbar">
       <div className="navbar-container">
         <Link to="/" className="navbar-logo">
-          <span className="logo-icon"></span>
+          <JoystickIcon size={28} className="logo-icon" />
           <span className="logo-text">PixelVault</span>
         </Link>
         <ul className="navbar-menu">

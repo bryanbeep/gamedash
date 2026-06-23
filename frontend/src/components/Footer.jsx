@@ -1,3 +1,4 @@
+import { JoystickIcon } from "./Icons";
 import "./Footer.css";
 
 function Footer() {
@@ -5,7 +6,10 @@ function Footer() {
     <footer className="footer">
       <div className="footer-container">
         <div className="footer-brand">
-          <span className="footer-logo">🎮 PixelVault</span>
+          <span className="footer-logo">
+            <JoystickIcon size={20} />
+            PixelVault
+          </span>
           <p className="footer-tagline">Revive la era dorada</p>
         </div>
         <p className="footer-copy">

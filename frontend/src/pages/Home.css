@@ -92,8 +92,10 @@
 }
 
 .feature-icon {
-  font-size: 3rem;
   margin-bottom: var(--space-md);
+  color: var(--color-accent);
+  display: flex;
+  justify-content: center;
 }
 
 .feature-card h3 {

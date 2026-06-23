@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import "./Login.css";
+import { JoystickIcon } from "../components/Icons";
 
 function Login() {
   const [username, setUsername] = useState("");
@@ -30,7 +31,7 @@ function Login() {
     <div className="login-page">
       <div className="login-card">
         <Link to="/" className="login-logo">
-          <span className="login-logo-icon">🎮</span>
+          <JoystickIcon size={28} className="login-logo-icon" />
           <span className="login-logo-text">PixelVault</span>
         </Link>
         <p className="login-subtitle">Panel de administración</p>

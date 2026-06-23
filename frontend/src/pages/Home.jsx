@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { CartridgeIcon, BoxIcon, HeartIcon } from "../components/Icons";
 import "./Home.css";
 
 function Home() {
@@ -23,7 +24,9 @@ function Home() {
           <h2 className="features-title">¿Por qué PixelVault?</h2>
           <div className="features-grid">
             <div className="feature-card">
-              <div className="feature-icon">🕹️</div>
+              <div className="feature-icon">
+                <CartridgeIcon size={64} />
+              </div>
               <h3>Clásicos auténticos</h3>
               <p>
                 Cada juego pasa por nuestro control de calidad antes de llegar a
@@ -31,7 +34,9 @@ function Home() {
               </p>
             </div>
             <div className="feature-card">
-              <div className="feature-icon">📦</div>
+              <div className="feature-icon">
+                <BoxIcon size={64} />
+              </div>
               <h3>Envío seguro</h3>
               <p>
                 Embalaje especial para que tu cartucho llegue como salió de
@@ -39,7 +44,9 @@ function Home() {
               </p>
             </div>
             <div className="feature-card">
-              <div className="feature-icon">💛</div>
+              <div className="feature-icon">
+                <HeartIcon size={64} />
+              </div>
               <h3>Hecho con amor</h3>
               <p>Somos coleccionistas atendiendo a otros coleccionistas.</p>
             </div>

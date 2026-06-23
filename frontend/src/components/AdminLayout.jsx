@@ -1,5 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import { JoystickIcon } from "./Icons";
 import "./AdminLayout.css";
 
 function AdminLayout({ children }) {
@@ -16,7 +17,7 @@ function AdminLayout({ children }) {
       <header className="admin-header">
         <div className="admin-header-container">
           <Link to="/dashboard" className="admin-logo">
-            <span className="admin-logo-icon">🎮</span>
+            <JoystickIcon size={24} className="admin-logo-icon" />
             <span className="admin-logo-text">PixelVault</span>
             <span className="admin-badge">Admin</span>
           </Link>
