@@ -1,0 +1,122 @@
+.form-page {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.form-back {
+  background: transparent;
+  color: var(--color-text-muted);
+  padding: var(--space-sm) 0;
+  margin-bottom: var(--space-md);
+}
+
+.form-back:hover {
+  background: transparent;
+  color: var(--color-accent);
+}
+
+.form-card {
+  background-color: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-xl);
+}
+
+.form-title {
+  color: var(--color-gold);
+  font-size: 1.25rem;
+  margin-bottom: var(--space-xl);
+  padding-bottom: var(--space-md);
+  border-bottom: 2px solid var(--color-accent);
+}
+
+.form-row {
+  margin-bottom: var(--space-md);
+}
+
+.form-row-double {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-md);
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  color: var(--color-text-muted);
+  font-size: 0.875rem;
+  margin-bottom: var(--space-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 500;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: var(--space-sm) var(--space-md);
+}
+
+.form-error {
+  color: var(--color-accent);
+  background-color: rgba(233, 69, 96, 0.1);
+  border: 1px solid var(--color-accent);
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-sm);
+  margin-top: var(--space-md);
+}
+
+.form-actions {
+  display: flex;
+  gap: var(--space-md);
+  justify-content: flex-end;
+  margin-top: var(--space-xl);
+  padding-top: var(--space-lg);
+  border-top: 1px solid var(--color-border);
+}
+
+.form-cancel {
+  background: transparent;
+  color: var(--color-text-muted);
+  border: 1px solid var(--color-border);
+}
+
+.form-cancel:hover {
+  background: var(--color-bg);
+  color: var(--color-text);
+}
+
+.form-submit {
+  background-color: var(--color-gold);
+  color: var(--color-bg);
+  font-family: var(--font-pixel);
+  font-size: 0.75rem;
+  padding: var(--space-md) var(--space-lg);
+}
+
+.form-submit:hover {
+  background-color: var(--color-accent);
+  color: var(--color-text);
+}
+
+@media (max-width: 600px) {
+  .form-card {
+    padding: var(--space-md);
+  }
+
+  .form-row-double {
+    grid-template-columns: 1fr;
+  }
+
+  .form-actions {
+    flex-direction: column-reverse;
+  }
+
+  .form-submit,
+  .form-cancel {
+    width: 100%;
+  }
+}

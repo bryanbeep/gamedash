@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import { useAuth } from "../context/AuthContext";
-import { getProducts, deleteProduct } from "../api/productService";
 import { useNavigate } from "react-router-dom";
+import { getProducts, deleteProduct } from "../api/productService";
+import AdminLayout from "../components/AdminLayout";
+import "./Dashboard.css";
 
 function Dashboard() {
-  const { user, logout } = useAuth();
   const navigate = useNavigate();
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -37,78 +37,86 @@ function Dashboard() {
   };
 
   return (
-    <div style={{ padding: "2rem", maxWidth: 1000, margin: "0 auto" }}>
-      <header
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          marginBottom: "2rem",
-        }}
-      >
+    <AdminLayout>
+      <div className="dashboard-header">
         <div>
-          <h1>GameDash</h1>
-          <p>Hola, {user?.username}</p>
+          <h1 className="dashboard-title">Productos</h1>
+          <p className="dashboard-subtitle">
+            Administra el catálogo de PixelVault
+          </p>
         </div>
-        <button onClick={logout}>Cerrar sesión</button>
-      </header>
-
-      <div style={{ marginBottom: "1rem" }}>
-        <button onClick={() => navigate("/products/new")}>
+        <button
+          className="dashboard-new-btn"
+          onClick={() => navigate("/products/new")}
+        >
           + Nuevo producto
         </button>
       </div>
 
-      {loading && <p>Cargando productos...</p>}
-      {error && <p style={{ color: "red" }}>{error}</p>}
+      {loading && <p className="dashboard-message">Cargando productos...</p>}
+      {error && <p className="dashboard-message dashboard-error">{error}</p>}
 
-      {!loading && products.length === 0 && (
-        <p>No hay productos cargados todavía.</p>
+      {!loading && !error && products.length === 0 && (
+        <div className="dashboard-empty">
+          <p>No hay productos cargados todavía.</p>
+          <button onClick={() => navigate("/products/new")}>
+            Crear el primero
+          </button>
+        </div>
       )}
 
       {!loading && products.length > 0 && (
-        <table style={{ width: "100%", borderCollapse: "collapse" }}>
-          <thead>
-            <tr style={{ borderBottom: "1px solid #ccc" }}>
-              <th style={{ textAlign: "left", padding: "0.5rem" }}>Título</th>
-              <th style={{ textAlign: "left", padding: "0.5rem" }}>
-                Plataforma
-              </th>
-              <th style={{ textAlign: "left", padding: "0.5rem" }}>Género</th>
-              <th style={{ textAlign: "right", padding: "0.5rem" }}>Precio</th>
-              <th style={{ textAlign: "right", padding: "0.5rem" }}>Stock</th>
-              <th style={{ padding: "0.5rem" }}>Acciones</th>
-            </tr>
-          </thead>
-          <tbody>
-            {products.map((product) => (
-              <tr key={product.id} style={{ borderBottom: "1px solid #eee" }}>
-                <td style={{ padding: "0.5rem" }}>{product.title}</td>
-                <td style={{ padding: "0.5rem" }}>{product.platform}</td>
-                <td style={{ padding: "0.5rem" }}>{product.genre}</td>
-                <td style={{ padding: "0.5rem", textAlign: "right" }}>
-                  ${product.price}
-                </td>
-                <td style={{ padding: "0.5rem", textAlign: "right" }}>
-                  {product.stock}
-                </td>
-                <td style={{ padding: "0.5rem" }}>
-                  <button
-                    style={{ marginRight: "0.5rem" }}
-                    onClick={() => navigate(`/products/${product.id}/edit`)}
-                  >
-                    Editar
-                  </button>
-                  <button onClick={() => handleDelete(product.id)}>
-                    Eliminar
-                  </button>
-                </td>
+        <div className="dashboard-table-wrapper">
+          <table className="dashboard-table">
+            <thead>
+              <tr>
+                <th>Título</th>
+                <th>Plataforma</th>
+                <th>Género</th>
+                <th className="text-right">Precio</th>
+                <th className="text-right">Stock</th>
+                <th className="text-right">Acciones</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {products.map((product) => (
+                <tr key={product.id}>
+                  <td className="cell-title">{product.title}</td>
+                  <td>
+                    {product.platform && (
+                      <span className="tag tag-platform">
+                        {product.platform}
+                      </span>
+                    )}
+                  </td>
+                  <td>
+                    {product.genre && (
+                      <span className="tag tag-genre">{product.genre}</span>
+                    )}
+                  </td>
+                  <td className="text-right cell-price">${product.price}</td>
+                  <td className="text-right">{product.stock}</td>
+                  <td className="text-right">
+                    <button
+                      className="btn-edit"
+                      onClick={() => navigate(`/products/${product.id}/edit`)}
+                    >
+                      Editar
+                    </button>
+                    <button
+                      className="btn-delete"
+                      onClick={() => handleDelete(product.id)}
+                    >
+                      Eliminar
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       )}
-    </div>
+    </AdminLayout>
   );
 }
 
